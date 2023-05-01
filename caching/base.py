@@ -14,7 +14,6 @@ from caching.invalidation import byid, cache, flush_key, invalidator, make_key
 
 log = logging.getLogger("caching")
 
-
 class CachingManager(models.Manager):
 
     # This option removed in Django 2.0

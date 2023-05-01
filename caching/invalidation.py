@@ -6,12 +6,12 @@ import socket
 from urllib.parse import parse_qsl
 
 from django.conf import settings
-from django.core.cache import cache as default_cache
-from django.core.cache import caches
 from django.core.cache.backends.base import InvalidCacheBackendError
 from django.utils import encoding, translation
 
+from caching.cache_selector import CacheSelector
 from caching import config
+
 
 try:
     import redis as redislib
@@ -19,10 +19,7 @@ except ImportError:
     redislib = None
 
 # Look for an own cache first before falling back to the default cache
-try:
-    cache = caches["cache_machine"]
-except (InvalidCacheBackendError, ValueError):
-    cache = default_cache
+cache = CacheSelector.get_cache()
 
 log = logging.getLogger("caching.invalidation")
 
