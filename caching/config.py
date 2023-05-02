@@ -1,9 +1,9 @@
 from django.conf import settings
-
+from .cache_selector import CacheSelector
 NO_CACHE = -1
 WHOLE_MODEL = "whole-model"
 
-CACHE_PREFIX = getattr(settings, "CACHE_PREFIX", "")
+CACHE_PREFIX = getattr(settings, "CACHE_PREFIX", CacheSelector.get_cache_prefix())
 FETCH_BY_ID = getattr(settings, "FETCH_BY_ID", False)
 FLUSH = CACHE_PREFIX + ":flush:"
 CACHE_EMPTY_QUERYSETS = getattr(settings, "CACHE_EMPTY_QUERYSETS", False)
