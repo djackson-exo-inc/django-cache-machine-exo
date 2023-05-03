@@ -3,7 +3,7 @@ from .cache_selector import CacheSelector
 NO_CACHE = -1
 WHOLE_MODEL = "whole-model"
 
-CACHE_PREFIX = getattr(settings, "CACHE_PREFIX", CacheSelector.get_cache_prefix())
+CACHE_PREFIX = getattr(settings, "CACHE_PREFIX", "")
 FETCH_BY_ID = getattr(settings, "FETCH_BY_ID", False)
 FLUSH = CACHE_PREFIX + ":flush:"
 CACHE_EMPTY_QUERYSETS = getattr(settings, "CACHE_EMPTY_QUERYSETS", False)
