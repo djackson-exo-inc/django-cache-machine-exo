@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.cache.backends.base import InvalidCacheBackendError
 from django.utils import encoding, translation
 
-from caching.cache_selector import CacheSelector
+from caching.cache_selector import CacheProxy
 from caching import config
 
 
@@ -18,8 +18,8 @@ try:
 except ImportError:
     redislib = None
 
-# Look for an own cache first before falling back to the default cache
-cache = CacheSelector.get_cache()
+
+cache = CacheProxy()
 
 log = logging.getLogger("caching.invalidation")
 
